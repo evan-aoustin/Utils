@@ -1,3 +1,5 @@
+<div class="overlay"></div>
+
 <button class="menuButton">&#9776;</button>
 
 <nav class="sideMenu">
@@ -6,6 +8,18 @@
 
 
 <style>
+    .overlay {
+    display: none; /* initialement caché */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0); /* Départ avec opacité à 0 pour transition */
+    z-index: 0; /* en dessous du menu mais au-dessus du contenu de la page */
+    transition: background-color 0.5s ease; /* Transition douce de l'opacité */
+    }
+    
     .menuButton, .closeButton {
         font-size: 24px;
         border: none;
@@ -42,18 +56,31 @@
 
 
 <script>
-    document.querySelectorAll('.menuButton').forEach(function(button) {
-        button.addEventListener('click', function() {
-            document.querySelector('.sideMenu').style.width = '80%'; /* Largeur du menu */
-            document.querySelector('.closeButton').style.display = 'block';
-        });
-    });
+document.querySelectorAll('.menuButton').forEach(function(button) {
+  button.addEventListener('click', function() {
+      document.querySelector('.sideMenu').style.width = '100%'; /* Largeur du menu */
+      document.querySelector('.closeButton').style.display = 'block';
+      var overlay = document.querySelector('.overlay');
+      overlay.style.display = 'block'; /* Rend l'overlay visible */
+      setTimeout(() => { overlay.style.background = 'rgba(0, 0, 0, 0.2)'; }, 10); /* Démarre la transition d'opacité après un délai court */
+  });
+});
 
-    document.querySelectorAll('.closeButton').forEach(function(button) {
-        button.addEventListener('click', function() {
-            document.querySelector('.sideMenu').style.width = '0';
-            this.style.display = 'none';
-        });
-    });
+document.querySelectorAll('.closeButton').forEach(function(button) {
+  button.addEventListener('click', function() {
+      document.querySelector('.sideMenu').style.width = '0';
+      this.style.display = 'none';
+      var overlay = document.querySelector('.overlay');
+      overlay.style.background = 'rgba(0, 0, 0, 0)'; /* Commence à diminuer l'opacité */
+      setTimeout(() => { overlay.style.display = 'none'; }, 500); /* Cache l'overlay après la transition */
+  });
+});
+
+document.querySelector('.overlay').addEventListener('click', function() {
+  document.querySelector('.sideMenu').style.width = '0';
+  document.querySelector('.closeButton').style.display = 'none';
+  this.style.background = 'rgba(0, 0, 0, 0)'; /* Commence à diminuer l'opacité */
+  setTimeout(() => { this.style.display = 'none'; }, 500); /* Cache l'overlay après la transition */
+});
 </script>
 
