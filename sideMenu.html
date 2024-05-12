@@ -1,0 +1,59 @@
+<button class="menuButton">&#9776;</button>
+
+<nav class="sideMenu">
+    <button class="closeButton">&times;</button>
+</nav>
+
+
+<style>
+    .menuButton, .closeButton {
+        font-size: 24px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+    }
+
+    .menuButton {
+        left: 10px;
+        color: red;
+    }
+
+    .closeButton {
+        right: 10px;
+        display: none; 
+        color: blue; 
+    }
+
+    .sideMenu {
+        height: 100%;
+        width: 0; 
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: black;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+</style>
+
+
+<script>
+    document.querySelectorAll('.menuButton').forEach(function(button) {
+        button.addEventListener('click', function() {
+            document.querySelector('.sideMenu').style.width = '80%'; /* Largeur du menu */
+            document.querySelector('.closeButton').style.display = 'block';
+        });
+    });
+
+    document.querySelectorAll('.closeButton').forEach(function(button) {
+        button.addEventListener('click', function() {
+            document.querySelector('.sideMenu').style.width = '0';
+            this.style.display = 'none';
+        });
+    });
+</script>
+
