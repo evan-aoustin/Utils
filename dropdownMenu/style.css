@@ -1,0 +1,13 @@
+.dropdown {
+    height: 17px;
+    transition: height 0.4s ease-in-out;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    background-color: red;
+}
+.bloc-top {
+
+}
+
+.bloc-links {
+
+}
