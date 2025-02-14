@@ -24,3 +24,7 @@ document.querySelector('.overlay').addEventListener('click', function() {
   this.style.background = 'rgba(0, 0, 0, 0)';
   setTimeout(() => { this.style.display = 'none'; }, 500);
 });
+
+function closeMenu() {
+    document.querySelector('.closeButton').click(); // Simule un clic sur le bouton close
+}
